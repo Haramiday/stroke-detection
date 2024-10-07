@@ -30,13 +30,6 @@ def read_root():
     return {"Hello": "World"}
 
 
-
-# def cosine_similarity(teacher,student):
-#     A = get_embedding(teacher, model='text-embedding-3-large')
-#     B = get_embedding(student, model='text-embedding-3-large')
-#     cosine = np.dot(A,B)/(norm(A)*norm(B))
-#     return cosine
-
 @app.post("/predict")
 async def get_prediction(request: Request):
     # load
@@ -61,8 +54,8 @@ async def get_prediction(request: Request):
         result = {"response":"YES"}
     elif category["hypertension"].index(message["hypertension"])=='Yes' and category["heart_disease"].index(message["heart_disease"])=='Yes':
         result = {"response":"YES"}
-    elif prediction == 0:
-        result = {"response":"NO"}
+    # elif prediction == 0:
+    #     result = {"response":"NO"}
     else:
-        result = {"response":"YES"}
+        result = {"response":"NO"}
     return result 
