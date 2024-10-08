@@ -47,6 +47,7 @@ async def get_prediction(request: Request):
               category["ever_married"].index(message["ever_married"]), category["work_type"].index(message["work_type"]),
               category["Residence_type"].index(message["Residence_type"]), message["avg_glucose_level"], message["bmi"], category["smoking_status"].index(message["smoking_status"])]]
     prediction = model_loaded.predict(data)[0]
+    print(prediction)
 
     if (category["hypertension"].index(message["hypertension"])=='Yes' or category["heart_disease"].index(message["heart_disease"])=='Yes') and (category["hypertension"].index(message["hypertension"])=='Yes' and category["heart_disease"].index(message["heart_disease"])=='Yes') and (category["smoking_status"].index(message["smoking_status"])=='Smokes' or category["smoking_status"].index(message["smoking_status"])=='Formerly smoked') and message["avg_glucose_level"]>= 125 and message["bmi"]>= 25:
         result = {"response":"YES"}
