@@ -49,16 +49,15 @@ async def get_prediction(request: Request):
               category["Residence_type"].index(message["Residence_type"]), message["avg_glucose_level"], message["bmi"], category["smoking_status"].index(message["smoking_status"])]]
     prediction = model_loaded.predict(data)[0]
     print(prediction)
-    print(category["hypertension"].index(message["hypertension"]) == category["heart_disease"].index(message["heart_disease"]))
-
-    if (category["hypertension"].index(message["hypertension"])=='Yes' or category["heart_disease"].index(message["heart_disease"])=='Yes') and (category["hypertension"].index(message["hypertension"])=='Yes' and category["heart_disease"].index(message["heart_disease"])=='Yes') and (category["smoking_status"].index(message["smoking_status"])=='Smokes' or category["smoking_status"].index(message["smoking_status"])=='Formerly smoked') and message["avg_glucose_level"]>= 125 and message["bmi"]>= 25:
+    
+    if (message["hypertension"]=='Yes' or message["heart_disease"]=='Yes') and (message["smoking_status"]=='Smokes' or message["smoking_status"]=='Formerly smoked') and message["avg_glucose_level"]>= 125 and message["bmi"]>= 25:
         result = {"response":"YES"}
-    elif category["hypertension"].index(message["hypertension"])=='Yes' and category["heart_disease"].index(message["heart_disease"])=='Yes' and (category["smoking_status"].index(message["smoking_status"])=='Smokes' or category["smoking_status"].index(message["smoking_status"])=='Formerly smoked'):
+    elif message["hypertension"]=='Yes' and message["heart_disease"]=='Yes' and (message["smoking_status"]=='Smokes' or message["smoking_status"]=='Formerly smoked'):
         result = {"response":"YES"}
-    elif category["hypertension"].index(message["hypertension"])=='Yes' and category["heart_disease"].index(message["heart_disease"])=='Yes':
+    elif message["hypertension"]=='Yes' and message["heart_disease"]=='Yes':
         result = {"response":"YES"}
-    # elif prediction == 0:
-    #     result = {"response":"NO"}
-    else:
+    elif prediction == 0:
         result = {"response":"NO"}
+    else:
+        result = {"response":"YES"}
     return result 
