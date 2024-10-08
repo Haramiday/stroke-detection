@@ -43,7 +43,7 @@ async def get_prediction(request: Request):
                 "ever_married":["No","Yes"],"work_type":['Never_worked','Children','Self-employed','Private','Govt_job'],"Residence_type":['Urban','Rural'],
                 "smoking_status":['Unknown','Never smoked','Formerly smoked','Smokes']}
     # print(category["gender"].index(message["gender"]))
-    data = [[category["gender"].index(message["gender"]), int(message["age")], 
+    data = [[category["gender"].index(message["gender"]), int(message["age"]), 
               category["hypertension"].index(message["hypertension"]), category["heart_disease"].index(message["heart_disease"]),
               category["ever_married"].index(message["ever_married"]), category["work_type"].index(message["work_type"]),
               category["Residence_type"].index(message["Residence_type"]), int(message["avg_glucose_level"]), float(message["bmi"]), category["smoking_status"].index(message["smoking_status"])]]
