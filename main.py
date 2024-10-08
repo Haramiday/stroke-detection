@@ -59,5 +59,5 @@ async def get_prediction(request: Request):
     elif prediction == 0:
         result = {"response":"NO"}
     else:
-        result = {"response":"YES"}
+        result = {"response":"NO"}
     return result 
